@@ -1,0 +1,106 @@
+[
+	 {
+		 "sun_direction" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		 },
+		"objects" : [
+			{
+				"type":"light",
+				"position":
+				{
+					"z": 5
+				},
+				"color":
+				{
+					"hex":"0xffffff"
+				}
+			}
+			{
+				"type" : "cube",
+				"name" : "the cube",
+				"position" : {
+					"x" : 0,
+					"y" : 0,
+					"z" : 0 
+				},
+				"size" : {
+					"x" : 1,
+					"y" : 1,
+					"z" : 1
+				},
+				"rotation" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"color" : {
+					"hex" : "0x007f7f"
+				},
+				"children" : [
+					{
+						"type" : "sphere",
+						"combine" : "cut",
+						"position" : {
+							"x" : 0,
+							"y" : 0,
+							"z" : 0
+						},
+						"rotation" : {
+							"x" : 0.0,
+							"y" : 0.0,
+							"z" : 0.0
+						},
+						"color" : {
+							"hex" : "0xffffff"
+						},
+						"radius" : 1.2,
+						"reflectance" : 1,
+						"light": false,
+						"children":
+						[
+							{
+								"type" : "sphere",
+								"combine" : "relative",
+								"position" : {
+									"x" : 0,
+									"y" : 0,
+									"z" : 0
+								},
+								"rotation" : {
+									"x" : 0.0,
+									"y" : 0.0,
+									"z" : 0.0
+								},
+								"color" : {
+									"hex" : "0xffffff"
+								},
+								"radius" : 1.1,
+								"reflectance" : 1,
+								"light": false
+							}
+						]
+					}
+				]
+			}	
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]	
+	}
+]

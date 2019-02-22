@@ -1,0 +1,759 @@
+{
+	"scenes" : {
+		"type" : "ARRAY",
+		"required" : true,
+		"max" : 50,
+		"min" : 1,
+		"min_included" : true,
+		"max_included" : true,
+		"childs" : {
+			"scene" : {
+				"required" : true,
+				"type" : "OBJECT",
+				"childs" : {
+					"name" : {
+						"type" : "STRING",
+						"required" : false,
+						"default" : "unnamed", 
+						"min" : 1,
+						"max" : 20,
+						"min_included" : true,
+						"max_included" : true,
+						"accepted_entries" : "*"
+					},
+					"sun_direction" : {
+						"type" : "OBJECT",
+						"required" : false,
+						"childs" : {
+							"x" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 0.0, 
+								"min" : "-INFINITY",
+								"max" : "INFINITY",
+								"min_included" : true,
+								"max_included" : true
+							},
+							"y" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 0.0, 
+								"min" : "-INFINITY",
+								"max" : "INFINITY",
+								"min_included" : true,
+								"max_included" : true
+							},
+							"z" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 0.0, 
+								"min" : "-INFINITY",
+								"max" : "INFINITY",
+								"min_included" : true,
+								"max_included" : true
+							}
+						}
+					},
+					"ambient_color" : {
+						"type" : "OBJECT",
+						"required" : false,
+						"childs" : {
+							"r" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 64.0, 
+								"min" : 0.0,
+								"max" : 255.0,
+								"min_included" : true,
+								"max_included" : true
+							},
+							"g" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 64.0, 
+								"min" : 0.0,
+								"max" : 255.0,
+								"min_included" : true,
+								"max_included" : true
+							},
+							"b" : {
+								"type" : "FLOAT",
+								"required" : false,
+								"default" : 64.0, 
+								"min" : 0.0,
+								"max" : 255.0,
+								"min_included" : true,
+								"max_included" : true
+							},
+							"hex" : {
+								"type" : "STRING",
+								"required" : false,
+								"accepted_entries" : "*",
+								"default" : "0xFFFFFF", 
+								"min" : 1,
+								"max" : 10,
+								"min_included" : true,
+								"max_included" : true
+							}
+						}
+					},
+					"cameras" : {
+						"type" : "ARRAY",
+						"required" : true,
+						"max" : 50,
+						"min" : 1,
+						"min_included" : true,
+						"max_included" : true,
+						"childs" : {
+							"camera" : {
+								"type" : "OBJECT",
+								"required" : true,
+								"childs" : { 
+									"position" : {
+										"type" : "OBJECT",
+										"required" : true,
+										"childs" : {
+											"x" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"y" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"z" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+
+										}
+									},
+									"forward" : {
+										"type" : "OBJECT",
+										"required" : false,
+										"childs" : {
+											"x" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"y" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"z" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"picasso" : {
+										"type" : "BOOL",
+										"required" : false,
+										"default" : false, 
+										"min" : 0,
+										"max" : 1,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"swirl" : {
+										"type" : "BOOL",
+										"required" : false,
+										"default" : false, 
+										"min" : 0,
+										"max" : 1,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"filter" : {
+										"type" : "STRING",
+										"required" : false,
+										"default" : "no filter", 
+										"min" : 2,
+										"max" : 20,
+										"min_included" : true,
+										"max_included" : true,
+										"accepted_entries" : [
+											"sepia",
+											"black and white",
+											"no filter"
+										]
+									},
+									"fov" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 90.0, 
+										"min" : 5.0,
+										"max" : 160.0,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"roll" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 0.0, 
+										"min" : "-INFINITY",
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"focal_length" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 3.0, 
+										"min" : 0.1,
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"aperture" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 0.0, 
+										"min" : 0.0,
+										"max" : "INFINITY",
+										"min_included" : false,
+										"max_included" : true
+									}
+								}
+							}
+						}
+					},
+					"objects" : {
+						"type" : "ARRAY",
+						"required" : false,
+						"min" : 0,
+						"max" : 128,
+						"min_included" : true,
+						"max_included" : true,
+						"childs" : {
+							"object" : {
+								"type" : "OBJECT",
+								"required" : false,
+								"childs" : {
+									"type" : {
+										"type" : "STRING",
+										"required" : true,
+										"default" : "quadric", 
+										"min" : 2,
+										"max" : 20,
+										"min_included" : true,
+										"max_included" : true,
+										"accepted_entries" : [
+											"sphere",
+											"capsule",
+											"quadric", 
+											"cylinder",
+											"cube",
+											"cone",
+											"plane",
+											"copy",
+											"light",
+											"torus"
+										]
+									},
+									"texture" : {
+										"type" : "INTEGER",
+										"required" : false,
+										"default" : 0,
+										"min" : 0,
+										"max" : 7,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"mode" : {
+										"type" : "STRING",
+										"required" : false,
+										"default" : "no texture",
+										"min" : 4,
+										"max" : 20,
+										"min_included" : true,
+										"max_included" : true,
+										"accepted_entries" : [
+											"none",
+											"plain texture",
+											"transparency",
+											"normal map",
+											"checkerboard",
+											"ripples",
+											"spiral",
+											"perlin"
+										]
+									},
+									"mapping" : {
+										"type" : "STRING",
+										"required" : false,
+										"default" : "planar",
+										"min" : 4,
+										"max" : 20,
+										"min_included" : true,
+										"max_included" : true,
+										"accepted_entries" : [
+											"spherical",
+											"planar"
+										]
+									},
+									"shift" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 0.0, 
+										"min" : "-INFINITY",
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"stretch" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : "-INFINITY",
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"name" : {
+										"type" : "STRING",
+										"required" : false,
+										"default" : "", 
+										"min" : 2,
+										"max" : 20,
+										"min_included" : true,
+										"max_included" : true,
+										"accepted_entries" : "*" 
+									},
+									"light_intensity" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : 10.0,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"absolute" : {
+										"type" : "BOOL",
+										"required" : false,
+										"default" : false, 
+										"min" : 0,
+										"max" : 1,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"position" : {
+										"type" : "OBJECT",
+										"required" : false,
+										"childs" : {
+											"x" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"y" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"z" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"rotation" : {
+										"type" : "OBJECT",
+										"required" : false,
+										"childs" : {
+											"x" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"y" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"z" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0, 
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"z" : {	
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : "INFINITY",
+										"min_included" : false,
+										"max_included" : true
+									},
+									"color" : {
+										"type" : "OBJECT",
+										"required" : false,
+										"childs" : {
+											"r" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 255.0, 
+												"min" : 0.0,
+												"max" : 255.0,
+												"min_included" : true,
+												"max_included" : true
+											},
+											"g" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 255.0, 
+												"min" : 0.0,
+												"max" : 255.0,
+												"min_included" : true,
+												"max_included" : true
+											},
+											"b" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 255.0, 
+												"min" : 0.0,
+												"max" : 255.0,
+												"min_included" : true,
+												"max_included" : true
+											},
+											"hex" : {
+												"type" : "STRING",
+												"required" : false,
+												"accepted_entries" : "*",
+												"default" : "0xFFFFFF", 
+												"min" : 1,
+												"max" : 10,
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"scale" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.01,
+										"max" : 100.0,
+										"min_included" : false,
+										"max_included" : true
+									},
+									"light" : {
+										"type" : "BOOL",
+										"required" : false,
+										"default" : false, 
+										"min" : 0,
+										"max" : 1,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"major_radius" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : "INFINITY",
+										"min_included" : false,
+										"max_included" : true
+									},
+									"minor_radius" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : "INFINITY",
+										"min_included" : false,
+										"max_included" : true
+									},
+									"opacity" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : 1.0,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"value" : {
+										"type" : "OBJECT",
+										"required" : true,
+										"childs" : {
+											"a"  : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"b" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"c" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"d" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"e" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : -1.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"f" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"g" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"h" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"i" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 0.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"j" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : -1.0,
+												"min" : "-INFINITY",
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"radius" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.1,
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"reflectance" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : 1.0,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"refraction_index" :{
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.6, 
+										"min" : 1.0,
+										"max" : "INFINITY",
+										"min_included" : true,
+										"max_included" : true
+									},
+									"roughness" : {
+										"type" : "FLOAT",
+										"required" : false,
+										"default" : 1.0, 
+										"min" : 0.0,
+										"max" : 1.0,
+										"min_included" : true,
+										"max_included" : true
+									},
+									"size" :{
+										"type" : "OBJECT",
+										"required" : false,
+										"childs" : {
+											"x" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0, 
+												"min" : 0.1,
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"y" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0, 
+												"min" :  0.1,
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											},
+											"z" : {
+												"type" : "FLOAT",
+												"required" : false,
+												"default" : 1.0, 
+												"min" : 0.1,
+												"max" : "INFINITY",
+												"min_included" : true,
+												"max_included" : true
+											}
+										}
+									},
+									"combine" : {
+											"type" : "STRING",
+											"required" : false,
+											"default" : "relative",
+											"min" : 2,
+											"max" : 20,
+											"min_included" : true,
+											"max_included" : true,
+											"accepted_entries" : [
+												"cut",
+												"negative",
+												"relative"
+											]
+									},
+									"children" : {
+										"type" : "ARRAY",
+										"required" : false,
+										"max" : 5,
+										"min" : 1,
+										"min_included" : true,
+										"max_included" : true,
+										"childs" : {
+											"child" : {
+												"type" : "OBJECT",
+												"required" : false,
+												"childs" : {
+													"combine" : {
+														"type" : "STRING",
+														"required" : false,
+														"default" : "relative",
+														"min" : 2,
+														"max" : 20,
+														"min_included" : true,
+														"max_included" : true,
+														"accepted_entries" : [
+															"negative",
+															"cut",
+															"relative"
+														]
+													},
+													"absolute" : {
+														"type" : "BOOL",
+														"required" : false,
+														"default" : false, 
+														"min" : 0,
+														"max" : 1,
+														"min_included" : true,
+														"max_included" : true
+													}												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

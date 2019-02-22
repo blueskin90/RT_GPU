@@ -1,0 +1,81 @@
+[
+	{
+	 	"name":"absolute cutting",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"x":-2
+				},
+				"rotation":
+				{
+					"z":45
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":180
+						}
+					}
+				]
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"x":1.5
+				},
+				"rotation":
+				{
+					"z":45
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"x":180
+						},
+						"absolute":true
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 1.0,
+					"z" : -4.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

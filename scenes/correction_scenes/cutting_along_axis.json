@@ -1,0 +1,86 @@
+[
+	 {
+	 	"name":"cutting along axis",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":-2.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"sphere",
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":180
+						}
+					}
+				]
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":2.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -4.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.75,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

@@ -1,0 +1,74 @@
+[
+	 {
+	 	"name":"textured objects",
+		"objects" : [
+			{
+				"type":"sphere",
+				"texture":6,
+
+				"stretch":1,
+				"mode":"plain texture",
+				"mapping":"spherical",
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"plane",
+				"texture":5,
+				"mode":"plain texture",
+				"position":
+				{
+					"y":-2
+				},
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"cylinder",
+				"texture":4,
+				"stretch":4,
+				"shift":-0.15,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":-2.5
+				},
+				"rotation":
+				{
+					"x":90
+				},
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"cone",
+				"texture":7,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":2.5
+				},
+				"light":true,
+				"light_intensity":1
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

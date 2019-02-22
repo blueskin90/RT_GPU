@@ -1,0 +1,55 @@
+[
+	 {
+	 	"name":"texture casting",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":10,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":7
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"y":2
+				},
+				"rotation":
+				{
+					"z":90
+				},
+				"texture":1,
+				"mode":"plain texture",
+				"roughness":0,
+				"reflectance":0,
+				"opacity":0.5
+			},
+			{
+				"type":"plane"
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

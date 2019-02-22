@@ -1,0 +1,130 @@
+[
+	{
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 7.0,
+					"z" : 5.0
+				},
+				"children":
+				[
+					{
+						"type":"sphere",
+						"combine":"negative",
+						"radius" : 4.0,
+						"position" :
+						{
+							"y" : -2.0
+						}
+					}
+				]
+			},
+
+			{
+				"type" : "cube",
+				"roughness" : 0.5,
+				"position" :
+				{
+					"y" : 3
+				},
+				"size" :
+				{
+					"x" : 1.5,
+					"y" : 1.5,
+					"z" : 1.5
+				},
+				"children":
+				[
+					{
+						"type":"sphere",
+						"combine":"negative",
+						"radius" : 2.0
+					},
+					{
+						"type":"sphere",
+						"radius" : 1.8,
+						"roughness" : 0,
+						"reflectance" : 0,
+						"opacity" : 0.3,
+						"refraction_index" : 1.4,
+						"color" :
+						{
+							"g" : 128,
+							"b" : 0
+						}
+					}
+				]
+			},
+
+			{
+				"type" : "cube",
+				"light" : true,
+				"position" :
+				{
+					"x" : -10,
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 7.0,
+					"z" : 5.0
+				}
+			},
+
+			{
+				"type" : "torus",
+				"light" : true,
+				"major_radius" : 4.0,
+				"minor_radius" : 0.1,
+				"rotation" :
+				{
+					"y" : 90
+				},
+				"position" :
+				{
+					"y" : 3
+				}
+			}
+
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 10.0,
+					"y" : 4.0,
+					"z" : 0.0
+				},
+				"forward" : {
+					"x" : -1.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	}
+]

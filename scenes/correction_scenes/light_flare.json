@@ -1,0 +1,95 @@
+[
+	 {
+	 	"name":"light flare",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":4.5,
+					"z":-2
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"cube",
+				"position":
+				{
+					"y":1,
+					"z":1
+				}
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":30,
+					"z":100
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":-10,
+					"y":1,
+					"z":15
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":15,
+					"y":1,
+					"z":30
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"plane",
+				"mode":"perlin",
+				"position":
+				{
+					"x":-0.75
+				},
+				"color":
+				{
+					"hex":"0xff3050"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"aperture":0.2,
+				"focal_length":5,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

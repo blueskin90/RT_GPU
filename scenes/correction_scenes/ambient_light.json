@@ -1,0 +1,112 @@
+[
+	 {
+	 	"name":"ambient light",
+	 	"ambient_color":
+	 	{
+	 		"hex":"0x7f7f7f"
+	 	},
+		"objects" : [
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":-4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0x30ff30"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				}
+			},
+			{
+				"type":"plane",
+				"color":
+				{
+					"hex":"0x6060ff"
+				},
+				"rotation":
+				{
+					"x":90
+				},
+				"position":
+				{
+					"z":10
+				}
+			},
+			{
+				"type":"cylinder",
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xff30ff"
+				},
+				"rotation":
+				{
+					"z":45,
+					"x":-10
+				},
+				"position":
+				{
+					"x":-2.5
+				}
+			},
+			{
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xffff30"
+				},
+				"type":"cone",
+				"scale":0.1,
+				"position":
+				{
+					"x":2.5
+				},
+				"rotation":
+				{
+					"z":-45,
+					"x":-10
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -10.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

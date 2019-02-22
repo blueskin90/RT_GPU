@@ -1,0 +1,185 @@
+[
+	{
+		"name":"glass",
+		"objects":
+		[
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":3,
+				"position":
+				{
+					"x":5,
+					"y":7
+				}
+			},
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":3,
+				"position":
+				{
+					"x":-1.5,
+					"z":6.5,
+					"y":7
+				}
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				},
+				"color":
+				{
+					"hex":"0xff5f50"
+				}
+			},
+			{
+				"type":"cube",
+				"size":
+				{
+					"x":4,
+					"y":0.25,
+					"z":4
+				},
+				"position":
+				{
+					"z":1.5,
+					"y":-0.8
+				},
+				"roughness":0.025
+			},
+			{
+				"type": "cone",
+				"name" : "glass",
+				"roughness":0,
+				"opacity":0,
+				"reflectance":0,
+				"refraction_index":1.6,
+				"scale":3,
+				"position":
+				{
+					"x":-1.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":180
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"y":-0.6
+						}
+					},
+					{
+						"type": "cylinder",
+						"roughness":0,
+						"opacity":0,
+						"reflectance":0,
+						"refraction_index":1.6,
+						"radius":0.1,
+						"children":
+						[
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":3
+								},
+								"rotation":
+								{
+									"z":180
+								}
+							},
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":-0.2
+								}
+							}
+						]
+					},
+					{
+						"type": "sphere",
+						"roughness":0,
+						"opacity":0,
+						"reflectance":0,
+						"refraction_index":1.6,
+						"radius":1.2,
+						"position":
+						{
+							"y":4.2
+						},
+						"children":
+						[
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":0.5
+								},
+								"rotation":
+								{
+									"z":180
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : 1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : 1.5,
+					"z" : 3
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : -1.5,
+					"z" : 3
+				}
+			}
+		],
+		"cameras":
+		[
+			{
+				"position":
+				{
+					"x":-7,
+					"y":8,
+					"z":-1
+				},
+				"forward":
+				{
+					"x":1,
+					"y":-0.7,
+					"z":0.4
+				}
+			}
+		]
+	}
+]

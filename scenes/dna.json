@@ -1,0 +1,298 @@
+[
+	{
+		"sun_direction":
+		{
+			"x":1,
+			"y":1,
+			"z":1
+		},
+		"objects":
+		[
+			{
+				"type":"cylinder",
+				"name":"element",
+				"roughness":0,
+				"opacity":0.1,
+				"reflectance":0.1,
+				"refraction_index":1.6,
+				"material":"planar",
+				"rotation": {
+					"x":90
+				},
+				"radius": 0.5,
+				"color": {
+					"hex":"0xffff"
+				},
+			"children": [
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":{
+							"y":5
+						},
+						"rotation":{
+							"z":180
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":{
+							"y":-5
+						}
+					},
+					{
+						"type":"sphere",
+						"combine":"cut",
+						"radius":1.5,
+						"position":{
+							"y":-5
+						}
+					},
+					{
+						"type":"sphere",
+						"combine":"cut",
+						"radius":1.5,
+						"position":{
+							"y":5
+						}
+					},
+					{
+						"color": {
+							"hex":"0xff0000"
+						},
+						"roughness":0,
+						"opacity":0.1,
+						"reflectance":0.1,
+						"refraction_index":1.6,
+						"type":"sphere",
+						"combine":"relative",
+						"radius":1.5,
+						"position":{
+							"y":-5
+						}
+					},
+					{
+						"color": {
+							"hex":"0xff0000"
+						},
+						"roughness":0,
+						"opacity":0.2,
+						"reflectance":0.1,
+						"refraction_index":1.6,
+						"type":"sphere",
+						"combine":"relative",
+						"radius":1.5,
+						"position":{
+							"y":5
+						}
+					}
+				]
+	
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 2
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 11
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 4
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 22
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 6
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 33
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 8
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 44
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 10
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 55
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 12
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 66
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 14
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 77
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 16
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 88
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 18
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 99
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 20
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 110
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 22
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 121
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 24
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 132				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 26
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 143
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 28
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 154
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 30
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 165
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 32
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 176
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "element",
+				"position" : {
+					"y" : 34
+				},
+				"rotation" : {
+					"x" : 90,
+					"y" : 187
+				}
+			}
+		],
+		"cameras":
+		[
+			{
+				"position":
+				{
+					"x":-20,
+					"y":18,
+					"z":0
+				},
+				"forward":
+				{
+					"x":1,
+					"y":0,
+					"z":0
+				}
+			}
+		]
+	}
+]

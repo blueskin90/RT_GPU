@@ -1,0 +1,110 @@
+[
+	 {
+	 	"name":"transparency map",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"texture":2,
+				"stretch":2,
+				"shift":0.5,
+				"opacity":0,
+				"mode":"transparency",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"y":1
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":-1
+						},
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":1
+						},
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"color":
+				{
+					"hex":"0xffffff"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -3.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

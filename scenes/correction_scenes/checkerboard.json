@@ -1,0 +1,265 @@
+[
+	{
+		"name" : "checkerboard",
+	   "objects" : [
+		   {
+			   "type" : "cube",
+			   "name" : "the cube",
+			   "position" : {
+				   "x" : 0,
+				   "y" : 0,
+				   "z" : 0 
+			   },
+			   "size" : {
+				   "x" : 5,
+				   "y" : 0.5,
+				   "z" : 5
+			   },
+			   "rotation" : {
+				   "x" : 0.0,
+				   "y" : 0.0,
+				   "z" : 0.0
+			   },
+			   "color" : {
+				   "hex" : "0x007f7f"
+			   },
+				"mode" : "checkerboard"
+		   },
+		   {
+				"type" : "cone",
+				"name" : "checker",
+				"position" : {
+					"x": -4.5,
+					"y" : 1,
+					"z" : 4.5
+				},
+				"color" : {
+					"hex" : "#d9c5b7"
+				},
+				"children" : [
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"rotation" : {
+							"z" : 180
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"position" : {
+							"y" : -0.5
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "sphere",
+						"combine" : "relative",
+						"radius" : 0.2,
+						"position" : {
+							"y" : 0.1
+						},
+						"color" : {
+							"hex" : "#d9c5b7"
+						}
+						
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : -0.5,
+					"y" : 1,
+					"z" : 0.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 0.5,
+					"y" : 1,
+					"z" : 1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 1.5,
+					"y" : 1,
+					"z" : 0.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 2.5,
+					"y" : 1,
+					"z" : 4.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 3.5,
+					"y" : 1,
+					"z" : 4.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 4.5,
+					"y" : 1,
+					"z" : 4.5
+				}
+			},
+		   {
+			"type" : "plane",
+			"position" : {
+				"x" : 0,
+				"y" : 0,
+				"z" : -5 
+			},
+			"color" : {
+				"hex" : "#6a492f"
+			}
+		},	
+		   {
+				"type" : "cone",
+				"name" : "black_checker",
+				"position" : {
+					"x": 4.5,
+					"y" : 1,
+					"z" : -4.5
+				},
+				"color" : {
+					"hex" : "#211812"
+				},
+				"children" : [
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"rotation" : {
+							"z" : 180
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"position" : {
+							"y" : -0.5
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "sphere",
+						"combine" : "relative",
+						"radius" : 0.2,
+						"position" : {
+							"y" : 0.1
+						},
+						"color" : {
+							"hex" : "#211812"
+						}
+						
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 2.5,
+					"y" : 1,
+					"z" : -4.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 0.5,
+					"y" : 1,
+					"z" : -4.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : -1.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : -2.5,
+					"y" : 1,
+					"z" : -1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 3.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 1.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			}
+	   ],
+	   "cameras" : [
+		   {
+			   "position" : {
+				   "x" : 0.0,
+				   "y" : 10.0,
+				   "z" : -12.0
+			   },
+			   "forward" : {
+				   "x" : 0.0,
+				   "y" : -0.4,
+				   "z" : 1.0
+			   },
+			   "fov" : 90.0,
+			   "filter" : "no filter",
+			   "focal_length" : 0.1
+		   },
+		   {
+			"position" : {
+				"x" : 0.0,
+				"y" : 2.0,
+				"z" : -2.0
+			},
+			"forward" : {
+				"x" : 0.0,
+				"y" : -1.0,
+				"z" : 1.0
+			},
+			"fov" : 90.0,
+			"filter" : "no filter",
+			"focal_length" : 0.1
+		}
+	   ]	
+   }
+]

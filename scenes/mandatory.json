@@ -1,0 +1,221 @@
+[
+	 {
+		"objects" : [
+			{
+				"type":"light",
+				"light_intensity":2,
+				"color":{"hex":"0xffffff"},
+				"position":
+				{
+					"x":5,
+					"y":1,
+					"z":-10
+				}
+			},
+			{
+				"type":"light",
+				"light_intensity":2,
+				"color":{"hex":"0xffffff"},
+				"position":
+				{
+					"x":-10,
+					"y":3,
+					"z":-10
+				}
+			},
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":-4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0x30ff30"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				}
+			},
+			{
+				"type":"plane",
+				"color":
+				{
+					"hex":"0x6060ff"
+				},
+				"rotation":
+				{
+					"x":90
+				},
+				"position":
+				{
+					"z":10
+				}
+			},
+			{
+				"type":"cylinder",
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xff30ff"
+				},
+				"rotation":
+				{
+					"z":45,
+					"x":-10
+				},
+				"position":
+				{
+					"x":-2.5
+				}
+			},
+			{
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xffff30"
+				},
+				"type":"cone",
+				"scale":0.1,
+				"position":
+				{
+					"x":2.5
+				},
+				"rotation":
+				{
+					"z":-45,
+					"x":-10
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -10.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			},
+			{
+				"position" : {
+					"x" : -5.0,
+					"y" : 1.5,
+					"z" : -2.0
+				},
+				"forward" : {
+					"x" : 1.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+		"objects" : [
+			{
+				"type":"light",
+				"light_intensity":2,
+				"color":{"hex":"0xffffff"},
+				"position":
+				{
+					"x":10,
+					"y":10,
+					"z":-5
+				}
+			},
+			{
+				"type":"light",
+				"light_intensity":2,
+				"color":{"hex":"0xffffff"},
+				"position":
+				{
+					"x":5,
+					"y":10,
+					"z":-5
+				}
+			},
+			{
+				"type":"light",
+				"light_intensity":2,
+				"color":{"hex":"0xffffff"},
+				"position":
+				{
+					"x":1,
+					"y":10,
+					"z":-5
+				}
+			},
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":1,
+					"y":1
+				},
+				"roughness":0.1
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 1.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

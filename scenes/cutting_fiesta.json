@@ -1,0 +1,144 @@
+[
+	 {
+		 "sun_direction" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		 },
+		"objects" : [
+			{
+				"type" : "cube",
+				"name" : "my sphere",
+				"position" : {
+					"x" : 5,
+					"y" : 5,
+					"z" : 5 
+				},
+				"size" : {
+					"x" : 1,
+					"y" : 5,
+					"z" : 5
+				},
+				"rotation" : {
+					"x" : 0.0,
+					"y" : 45.0,
+					"z" : 45.0
+				},
+				"color" : {
+					"hex" : "0xfff000"
+				},
+				"mapping" : "planar",
+				"mode" : "plain texture",
+				"texture" : 6,
+				"stretch":10,
+				"shift": 0.5,
+				"children" : [
+					{
+						"type" : "sphere",
+						"combine" : "cut",
+						"position" : {
+							"x" : 0,
+							"y" : 0,
+							"z" : 1 
+						},
+						"size" : {
+							"x" : 1,
+							"y" : 5,
+							"z" : 5
+						},
+						"rotation" : {
+							"x" : 0.0,
+							"y" : 45.0,
+							"z" : 45.0
+						},
+						"color" : {
+							"hex" : "0x55dd44"
+						}
+					},
+					{
+						"type" : "sphere",
+						"combine" : "cut",
+						"position" : {
+							"x" : 0,
+							"y" : 0,
+							"z" : -1 
+						},
+						"size" : {
+							"x" : 1,
+							"y" : 5,
+							"z" : 5
+						},
+						"rotation" : {
+							"x" : 0.0,
+							"y" : 45.0,
+							"z" : 45.0
+						},
+						"color" : {
+							"hex" : "#0000ff"
+						}
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "my sphere",
+				"position" : {
+					"x" : 0,
+					"y" : 0,
+					"z" : 0 
+				},
+				"rotation" : {
+					"x" : 45.0,
+					"y" : 0.0,
+					"z" : 45.0
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "my sphere",
+				"position" : {
+					"x" : -10,
+					"y" : 0,
+					"z" : 0 
+				},
+				"rotation" : {
+					"x" : 45.0,
+					"y" : 0.0,
+					"z" : 45.0
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			},
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "sepia",
+				"focal_length" : 0.1
+			}
+		]	
+	}
+]

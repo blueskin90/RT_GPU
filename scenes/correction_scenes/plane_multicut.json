@@ -1,0 +1,143 @@
+[
+	 {
+	 	"name":"plane multicut",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"x":-0.75
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":-0.5
+						},
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":0.5
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-0.5
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"x":0.75
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"name":"plane_cut",
+						"combine":"cut",
+						"position":
+						{
+							"z":-0.5
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"copy",
+						"name":"plane_cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90,
+							"y":-60
+						}
+					},
+					{
+						"type":"copy",
+						"name":"plane_cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90,
+							"y":60
+						}
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 1.0,
+					"z" : -2.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]

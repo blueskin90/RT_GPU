@@ -1,0 +1,2847 @@
+[
+	{
+	 	"name":"ambient light",
+	 	"ambient_color":
+	 	{
+	 		"hex":"0x7f7f7f"
+	 	},
+		"objects" : [
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":-4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"sphere",
+				"color":
+				{
+					"hex":"0x30ff30"
+				},
+				"position":
+				{
+					"z":-2,
+					"x":4.5
+				},
+				"roughness":0.4
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				}
+			},
+			{
+				"type":"plane",
+				"color":
+				{
+					"hex":"0x6060ff"
+				},
+				"rotation":
+				{
+					"x":90
+				},
+				"position":
+				{
+					"z":10
+				}
+			},
+			{
+				"type":"cylinder",
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xff30ff"
+				},
+				"rotation":
+				{
+					"z":45,
+					"x":-10
+				},
+				"position":
+				{
+					"x":-2.5
+				}
+			},
+			{
+				"roughness":0.4,
+				"color":
+				{
+					"hex":"0xffff30"
+				},
+				"type":"cone",
+				"scale":0.1,
+				"position":
+				{
+					"x":2.5
+				},
+				"rotation":
+				{
+					"z":-45,
+					"x":-10
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -10.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"cutting along axis",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":-2.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"sphere",
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":180
+						}
+					}
+				]
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":2.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -4.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.75,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"absolute cutting",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"x":-2
+				},
+				"rotation":
+				{
+					"z":45
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"z":180
+						}
+					}
+				]
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"x":1.5
+				},
+				"rotation":
+				{
+					"z":45
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"negative",
+						"rotation":
+						{
+							"x":180
+						},
+						"absolute":true
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 1.0,
+					"z" : -4.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"plane multicut",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":5,
+					"z":-5
+				},
+				"light":true,
+				"light_intensity":8
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"x":-0.75
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":-0.5
+						},
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":0.5
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-0.5
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"x":0.75
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"name":"plane_cut",
+						"combine":"cut",
+						"position":
+						{
+							"z":-0.5
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"copy",
+						"name":"plane_cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90,
+							"y":-60
+						}
+					},
+					{
+						"type":"copy",
+						"name":"plane_cut",
+						"position":
+						{
+							"z":0.5
+						},
+						"rotation":
+						{
+							"x":90,
+							"y":60
+						}
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 1.0,
+					"z" : -2.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"ripples",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"mode":"ripples",
+				"position":
+				{
+					"x":-0.75
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+		"name" : "checkerboard",
+	   "objects" : [
+	   		{
+	   			"type":"sphere",
+	   			"light":true,
+	   			"light_intensity":5,
+	   			"position":
+	   			{
+	   				"x":7,
+	   				"y":7
+	   			}
+	   		},
+	   		{
+	   			"type":"sphere",
+	   			"light":true,
+	   			"light_intensity":5,
+	   			"position":
+	   			{
+	   				"z":7,
+	   				"y":7
+	   			}
+	   		},
+		   {
+			   "type" : "cube",
+			   "name" : "the cube",
+			   "position" : {
+				   "x" : 0,
+				   "y" : 0,
+				   "z" : 0 
+			   },
+			   "size" : {
+				   "x" : 5,
+				   "y" : 0.5,
+				   "z" : 5
+			   },
+			   "rotation" : {
+				   "x" : 0.0,
+				   "y" : 0.0,
+				   "z" : 0.0
+			   },
+			   "color" : {
+				   "hex" : "0x007f7f"
+			   },
+				"mode" : "checkerboard"
+		   },
+		   {
+				"type" : "cone",
+				"name" : "checker",
+				"position" : {
+					"x": -4.5,
+					"y" : 1,
+					"z" : 4.5
+				},
+				"color" : {
+					"hex" : "#d9c5b7"
+				},
+				"children" : [
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"rotation" : {
+							"z" : 180
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"position" : {
+							"y" : -0.5
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "sphere",
+						"combine" : "relative",
+						"radius" : 0.2,
+						"position" : {
+							"y" : 0.1
+						},
+						"color" : {
+							"hex" : "#d9c5b7"
+						}
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : -0.5,
+					"y" : 1,
+					"z" : 0.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 0.5,
+					"y" : 1,
+					"z" : 1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "checker",
+				"position" : {
+					"x" : 1.5,
+					"y" : 1,
+					"z" : 0.5
+				}
+			},
+		   {
+			"type" : "plane",
+			"position" : {
+				"x" : 0,
+				"y" : 0,
+				"z" : -5 
+			},
+			"color" : {
+				"hex" : "#6a492f"
+			}
+		},	
+		   {
+				"type" : "cone",
+				"name" : "black_checker",
+				"position" : {
+					"x": 4.5,
+					"y" : 1,
+					"z" : -4.5
+				},
+				"color" : {
+					"hex" : "#211812"
+				},
+				"children" : [
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"rotation" : {
+							"z" : 180
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "plane",
+						"combine" : "cut",
+						"position" : {
+							"y" : -0.5
+						},
+						"scale" : 2
+					},
+					{
+						"type" : "sphere",
+						"combine" : "relative",
+						"radius" : 0.2,
+						"position" : {
+							"y" : 0.1
+						},
+						"color" : {
+							"hex" : "#211812"
+						}
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : -1.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : -2.5,
+					"y" : 1,
+					"z" : -1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 3.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "black_checker",
+				"position" : {
+					"x" : 1.5,
+					"y" : 1,
+					"z" : -2.5
+				}
+			}
+	   ],
+	   "cameras" : [
+		   {
+			   "position" : {
+				   "x" : 0.0,
+				   "y" : 5.0,
+				   "z" : -8.0
+			   },
+			   "forward" : {
+				   "x" : 0.0,
+				   "y" : -0.4,
+				   "z" : 1.0
+			   },
+			   "fov" : 90.0,
+			   "filter" : "no filter",
+			   "focal_length" : 0.1
+		   },
+		   {
+			"position" : {
+				"x" : 0.0,
+				"y" : 2.0,
+				"z" : -2.0
+			},
+			"forward" : {
+				"x" : 0.0,
+				"y" : -1.0,
+				"z" : 1.0
+			},
+			"fov" : 90.0,
+			"filter" : "no filter",
+			"focal_length" : 0.1
+		}
+	   ]	
+   },
+   {
+	 	"name":"spiral",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"mode":"spiral",
+				"position":
+				{
+					"x":-0.75
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 6.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.75,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"perlin",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"plane",
+				"mode":"perlin",
+				"position":
+				{
+					"x":-0.75
+				},
+				"color":
+				{
+					"hex":"0xff3050"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 6.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.75,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"light flare",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":3,
+					"y":4.5,
+					"z":-2
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"cube",
+				"position":
+				{
+					"y":1,
+					"z":1
+				}
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":30,
+					"z":100
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":-10,
+					"y":1,
+					"z":15
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":15,
+					"y":1,
+					"z":30
+				},
+				"radius":1,
+				"light":true,
+				"light_intensity":5
+			},
+			{
+				"type":"plane",
+				"mode":"perlin",
+				"position":
+				{
+					"x":-0.75
+				},
+				"color":
+				{
+					"hex":"0xff3050"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"aperture":0.2,
+				"focal_length":5,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"parallel light",
+	 	"sun_direction":
+	 	{
+	 		"x":1,
+	 		"y":1
+	 	},
+		"objects" : [
+			{
+				"type":"sphere",
+				"name":"ice cream",
+				"position":
+				{
+					"y":3.5,
+					"z":1,
+					"x":-1
+				},
+				"rotation":
+				{
+					"z":180
+				},
+				"color":
+				{
+					"hex":"#FFAFD7"
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":180
+						}
+					},
+					{
+						"type":"cone",
+						"scale":0.1,
+						"color":
+						{
+							"hex":"#FFEBCD"
+						},
+						"position":
+						{
+							"y":3.2
+						},
+						"children":
+						[
+							{
+								"type":"plane",
+								"combine":"cut",
+								"rotation":
+								{
+									"z":180
+								}
+							},
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":-3.3
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"type":"cube",
+				"position":
+				{
+					"x":-5,
+					"y":2.5
+				},
+				"size":
+				{
+					"x":0.1,
+					"y":5,
+					"z":10
+				}
+			},
+			{
+				"type":"cube",
+				"position":
+				{
+					"x":0,
+					"y":2.5,
+					"z":5
+				},
+				"size":
+				{
+					"x":10,
+					"y":5,
+					"z":0.1
+				}
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"x":-0.75
+				},
+				"color":
+				{
+					"hex":"0xeff07f"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -2.0
+				},
+				"forward" : {
+					"x" : -0.5,
+					"y" : -0.2,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+		"name":"reflections",
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cylinder",
+				"light" : true,
+				"radius" : 2,
+				"light_intensity" : 1.5
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"position" :
+				{
+					"x" : 0,
+					"z" : 7,
+					"y" : 2
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0.25,
+				"position" :
+				{
+					"x" : 4.949748,
+					"z" : 4.949748,
+					"y" : 2
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0.5,
+				"position" :
+				{
+					"x" : 7,
+					"z" : 0,
+					"y" : 2
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0.75,
+				"position" :
+				{
+					"x" : 4.949748,
+					"z" : -4.949748,
+					"y" : 2
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 1,
+				"position" :
+				{
+					"x" : 0,
+					"z" : -7,
+					"y" : 2
+				}
+			}
+
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 4.0,
+					"y" : 7.0,
+					"z" : 13.0
+				},
+				"forward" : {
+					"x" : -0.2,
+					"y" : -0.2,
+					"z" : -1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	},
+	{
+		"name":"transparency",
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "sphere",
+				"light" : true,
+				"radius" : 2,
+				"light_intensity" : 1.0,
+				"position" :
+				{
+					"y" : 2
+				}
+			},
+
+
+
+		{
+			"type" : "cube",
+			"roughness" : 0,
+			"reflectance" : 0,
+			"opacity" : 0,
+			"refraction_index" : 1.1,
+			"size" :
+			{
+				"x" : 4.5,
+				"y" : 5,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"y" : 5.25,
+				"z" : -5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"roughness" : 0.25,
+			"reflectance" : 0,
+			"opacity" : 0,
+			"refraction_index" : 1.1,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5,
+				"z" : 4.5
+			},
+			"position" :
+			{
+				"y" : 5.25,
+				"x" : 5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"roughness" : 0.5,
+			"reflectance" : 0,
+			"opacity" : 0,
+			"refraction_index" : 1.1,
+			"size" :
+			{
+				"x" : 4.5,
+				"y" : 5,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"y" : 5.25,
+				"z" : 5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"roughness" : 0.75,
+			"reflectance" : 0,
+			"opacity" : 0,
+			"refraction_index" : 1.1,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5,
+				"z" : 4.5
+			},
+			"position" :
+			{
+				"y" : 5.25,
+				"x" : -5.5
+			}
+		},
+
+
+
+		{
+			"type" : "cube",
+			"light" : true,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5.125,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"x" : 5.5,
+				"y" : 5.25,
+				"z" : -5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"light" : true,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5.125,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"x" : 5.5,
+				"y" : 5.25,
+				"z" : 5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"light" : true,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5.125,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"x" : -5.5,
+				"y" : 5.25,
+				"z" : 5.5
+			}
+		},
+		{
+			"type" : "cube",
+			"light" : true,
+			"size" :
+			{
+				"x" : 0.5,
+				"y" : 5.125,
+				"z" : 0.5
+			},
+			"position" :
+			{
+				"x" : -5.5,
+				"y" : 5.25,
+				"z" : -5.5
+			}
+		}
+
+
+
+
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : -13.0
+				},
+				"forward" : {
+					"x" : 0,
+					"y" : 0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	},
+	{
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cylinder",
+				"light" : true,
+				"radius" : 2,
+				"light_intensity" : 1.5,
+				"rotation" :
+				{
+					"z" : 90
+				}
+			},
+			{
+				"type" : "cylinder",
+				"light" : true,
+				"radius" : 1,
+				"light_intensity" : 1.5,
+				"color" :
+				{
+					"r" : 0
+				},
+				"position" :
+				{
+					"z" : -3.75,
+					"y" : -0.5
+				},
+				"rotation" :
+				{
+					"z" : 90
+				}
+			},
+			{
+				"type" : "cube",
+				"size" :
+				{
+					"x" : 9999,
+					"y" : 15
+				},
+				"position" :
+				{
+					"z" : 1
+				}
+			},
+			{
+				"type" : "cube",
+				"size" :
+				{
+					"x" : 9999,
+					"y" : 2,
+					"z" : 2
+				},
+				"position" :
+				{
+					"y" : -1,
+					"z" : -2.5
+				}
+			},
+			{
+				"type" : "cube",
+				"size" :
+				{
+					"x" : 9999,
+					"y" : 2,
+					"z" : 2
+				},
+				"position" :
+				{
+					"y" : 15,
+					"z" : -0.25
+				},
+				"color" :
+				{
+					"b" : 0
+				}
+			},
+
+
+
+			{
+				"type" : "sphere",
+				"radius" : 4,
+				"roughness" : 0,
+				"refraction_index" : 1.0,
+				"reflectance" : 0.0,
+				"opacity" : 0,
+				"position" :
+				{
+					"x" : -11,
+					"z" : -11,
+					"y" : 5
+				}
+			},
+			{
+				"type" : "sphere",
+				"radius" : 4,
+				"roughness" : 0,
+				"refraction_index" : 1.1,
+				"reflectance" : 0.0,
+				"opacity" : 0,
+				"position" :
+				{
+					"x" : 0,
+					"z" : -11,
+					"y" : 5
+				}
+			},
+			{
+				"type" : "sphere",
+				"radius" : 4,
+				"roughness" : 0,
+				"refraction_index" : 1.3,
+				"reflectance" : 0.0,
+				"opacity" : 0,
+				"position" :
+				{
+					"x" : 11,
+					"z" : -11,
+					"y" : 5
+				}
+			}
+		],
+		"cameras" :
+		[
+			{
+				"position" :
+				{
+					"x" : 0,
+					"y" : 15.0,
+					"z" : -25.0
+				},
+				"forward" :
+				{
+					"x" : 0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		],
+		"name":"refraction index"
+	},
+	{
+		"name":"opacity",
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cylinder",
+				"light" : true,
+				"radius" : 2,
+				"light_intensity" : 1.5
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.1,
+				"refraction_index" : 1.6,
+				"color" :
+				{
+					"r" : 255,
+					"g" : 0,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : 0,
+					"z" : 7,
+					"y" : 2.01
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.2,
+				"refraction_index" : 1.6,
+				"color" :
+				{
+					"r" : 255,
+					"g" : 0,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : 4.949748,
+					"z" : 4.949748,
+					"y" : 2.01
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.3,
+				"refraction_index" : 1.6,
+				"color" :
+				{
+					"r" : 255,
+					"g" : 0,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : 7,
+					"z" : 0,
+					"y" : 2.01
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.4,
+				"refraction_index" : 1.6,
+				"color" :
+				{
+					"r" : 255,
+					"g" : 0,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : 4.949748,
+					"z" : -4.949748,
+					"y" : 2.01
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.5,
+				"refraction_index" : 1.6,
+				"color" :
+				{
+					"r" : 255,
+					"g" : 0,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : 0,
+					"z" : -7,
+					"y" : 2.01
+				}
+			},
+
+			{
+				"type" : "sphere",
+				"radius" : 2,
+				"roughness" : 0,
+				"reflectance" : 0,
+				"opacity" : 0.0,
+				"refraction_index" : 1.6,
+				"position" :
+				{
+					"x" : -4.949748,
+					"z" : -4.949748,
+					"y" : 2.01
+				}
+			}
+
+		],
+
+
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 4.0,
+					"y" : 7.0,
+					"z" : 13.0
+				},
+				"forward" : {
+					"x" : -0.2,
+					"y" : -0.2,
+					"z" : -1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	},
+	{
+	 	"name":"textured objects",
+		"objects" : [
+			{
+				"type":"sphere",
+				"texture":6,
+
+				"stretch":1,
+				"mode":"plain texture",
+				"mapping":"spherical",
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"plane",
+				"texture":5,
+				"mode":"plain texture",
+				"position":
+				{
+					"y":-2
+				},
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"cylinder",
+				"texture":4,
+				"stretch":4,
+				"shift":-0.15,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":-2.5
+				},
+				"rotation":
+				{
+					"x":90
+				},
+				"light":true,
+				"light_intensity":1
+			},
+			{
+				"type":"cone",
+				"texture":7,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":2.5
+				},
+				"light":true,
+				"light_intensity":1
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 2.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"stretch/shift",
+		"objects" : [
+			{
+				"type":"plane",
+				"texture":7,
+				"stretch":-1,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":-2
+				},
+				"light":true,
+				"light_intensity":1,
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"texture":7,
+				"stretch":-2,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":0
+				},
+				"light":true,
+				"light_intensity":1,
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"texture":7,
+				"stretch":-0.3333,
+				"mode":"plain texture",
+				"position":
+				{
+					"z":1,
+					"x":0
+				},
+				"light":true,
+				"light_intensity":1,
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"texture":7,
+				"stretch":-1,
+				"shift":0.25,
+				"mode":"plain texture",
+				"position":
+				{
+					"x":2
+				},
+				"light":true,
+				"light_intensity":1,
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					}
+				]
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.5,
+					"y" : 2.5,
+					"z" : 0.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -1.0,
+					"z" : 0.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"normal map",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"texture":3,
+				"stretch":2,
+				"mode":"normal map",
+				"position":
+				{
+					"x":-0.75
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"transparency map",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"texture":2,
+				"stretch":2,
+				"shift":0.5,
+				"opacity":0,
+				"mode":"transparency",
+				"color":
+				{
+					"hex":"0xff3030"
+				},
+				"position":
+				{
+					"y":1
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":-1
+						},
+						"rotation":
+						{
+							"z":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"x":1
+						},
+						"rotation":
+						{
+							"z":-90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":1
+						},
+						"rotation":
+						{
+							"x":90
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"z":-1
+						},
+						"rotation":
+						{
+							"x":-90
+						}
+					}
+				]
+			},
+			{
+				"type":"plane",
+				"color":
+				{
+					"hex":"0xffffff"
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -3.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+	 	"name":"texture casting",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":10,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":7
+			},
+			{
+				"type":"cylinder",
+				"position":
+				{
+					"y":2
+				},
+				"rotation":
+				{
+					"z":90
+				},
+				"texture":1,
+				"mode":"plain texture",
+				"roughness":0,
+				"reflectance":0,
+				"opacity":0.5
+			},
+			{
+				"type":"plane"
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 3.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	},
+	{
+		"name":"glass",
+		"objects":
+		[
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":3,
+				"position":
+				{
+					"x":5,
+					"y":7
+				}
+			},
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":3,
+				"position":
+				{
+					"x":-1.5,
+					"z":6.5,
+					"y":7
+				}
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				},
+				"color":
+				{
+					"hex":"0xff5f50"
+				}
+			},
+			{
+				"type":"cube",
+				"size":
+				{
+					"x":4,
+					"y":0.25,
+					"z":4
+				},
+				"position":
+				{
+					"z":1.5,
+					"y":-0.8
+				},
+				"roughness":0.025
+			},
+			{
+				"type": "cone",
+				"name" : "glass",
+				"roughness":0,
+				"opacity":0,
+				"reflectance":0,
+				"refraction_index":1.6,
+				"scale":3,
+				"position":
+				{
+					"x":-1.5
+				},
+				"children":
+				[
+					{
+						"type":"plane",
+						"combine":"cut",
+						"rotation":
+						{
+							"z":180
+						}
+					},
+					{
+						"type":"plane",
+						"combine":"cut",
+						"position":
+						{
+							"y":-0.6
+						}
+					},
+					{
+						"type": "cylinder",
+						"roughness":0,
+						"opacity":0,
+						"reflectance":0,
+						"refraction_index":1.6,
+						"radius":0.1,
+						"children":
+						[
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":3
+								},
+								"rotation":
+								{
+									"z":180
+								}
+							},
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":-0.2
+								}
+							}
+						]
+					},
+					{
+						"type": "sphere",
+						"roughness":0,
+						"opacity":0,
+						"reflectance":0,
+						"refraction_index":1.6,
+						"radius":1.2,
+						"position":
+						{
+							"y":4.2
+						},
+						"children":
+						[
+							{
+								"type":"plane",
+								"combine":"cut",
+								"position":
+								{
+									"y":0.5
+								},
+								"rotation":
+								{
+									"z":180
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : 1.5
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : 1.5,
+					"z" : 3
+				}
+			},
+			{
+				"type" : "copy",
+				"name" : "glass",
+				"position" : {
+					"x" : -1.5,
+					"z" : 3
+				}
+			}
+		],
+		"cameras":
+		[
+			{
+				"position":
+				{
+					"x":-7,
+					"y":8,
+					"z":-1
+				},
+				"forward":
+				{
+					"x":1,
+					"y":-0.7,
+					"z":0.4
+				}
+			}
+		]
+	},
+	{
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 7.0,
+					"z" : 5.0
+				},
+				"children":
+				[
+					{
+						"type":"sphere",
+						"combine":"negative",
+						"radius" : 4.0,
+						"position" :
+						{
+							"y" : -2.0
+						}
+					}
+				]
+			},
+
+			{
+				"type" : "cube",
+				"roughness" : 0.5,
+				"position" :
+				{
+					"y" : 3
+				},
+				"size" :
+				{
+					"x" : 1.5,
+					"y" : 1.5,
+					"z" : 1.5
+				},
+				"children":
+				[
+					{
+						"type":"sphere",
+						"combine":"negative",
+						"radius" : 2.0
+					},
+					{
+						"type":"sphere",
+						"radius" : 1.8,
+						"roughness" : 0,
+						"reflectance" : 0,
+						"opacity" : 0.3,
+						"refraction_index" : 1.4,
+						"color" :
+						{
+							"g" : 128,
+							"b" : 0
+						}
+					}
+				]
+			},
+
+			{
+				"type" : "cube",
+				"light" : true,
+				"position" :
+				{
+					"x" : -10,
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 7.0,
+					"z" : 5.0
+				}
+			},
+
+			{
+				"type" : "torus",
+				"light" : true,
+				"major_radius" : 4.0,
+				"minor_radius" : 0.1,
+				"rotation" :
+				{
+					"y" : 90
+				},
+				"position" :
+				{
+					"y" : 3
+				}
+			}
+
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 10.0,
+					"y" : 4.0,
+					"z" : 0.0
+				},
+				"forward" : {
+					"x" : -1.0,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	},
+	{
+		"name":"hyperboloid",
+		"objects":
+		[
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":6,
+				"color":
+				{
+					"hex":"0x00ff00"
+				},
+				"position":
+				{
+					"x":-10,
+					"y":4
+				}
+			},
+			{
+				"type":"sphere",
+				"light":true,
+				"light_intensity":6,
+				"color":
+				{
+					"hex":"0x0000ff"
+				},
+				"position":
+				{
+					"z":-10,
+					"y":4
+				}
+			},
+			{
+				"type":"plane",
+				"position":
+				{
+					"y":-1
+				},
+				"color":
+				{
+					"hex":"0x7f7f7f"
+				}
+			},
+			{
+				"type":"quadric",
+				"position":
+				{
+					"y":3
+				},
+				"value":
+				{
+					"a":1,
+					"b":0,
+					"c":0,
+					"d":0,
+					"e":-1,
+					"f":0,
+					"g":0,
+					"h":1,
+					"i":0,
+					"j":-1
+				}
+			}
+		],
+		"cameras":
+		[
+			{
+				"position":
+				{
+					"x":-7,
+					"y":3,
+					"z":-7
+				},
+				"forward":
+				{
+					"x":1,
+					"y":-0.3,
+					"z":1
+				}
+			}
+		]
+	},
+	{
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "plane"
+			},
+			{
+				"type" : "cube",
+				"light" : true,
+				"light_intensity" : 1.5,
+				"position" :
+				{
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 7.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"roughness" : 0.0,
+				"rotation" :
+				{
+					"z" : 45
+				},
+				"position" :
+				{
+					"x" : -15,
+					"y" : 7.5
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 5.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "torus",
+				"rotation" :
+				{
+					"x" : 90
+				},
+				"position" :
+				{
+					"x" : -4.5,
+					"y" : 13
+				},
+				"major_radius" : 3,
+				"minor_radius" : 1
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"y" : 1.0
+				},
+				"size" :
+				{
+					"x" : 2.0,
+					"y" : 5.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"x" : -4.0,
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 4.0,
+					"y" : 1.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"radius" : 2.0,
+				"type" : "sphere",
+				"color" :
+				{
+					"r" : 255,
+					"g" : 200,
+					"b" : 128
+				},
+				"position" :
+				{
+					"x" : -15,
+					"y" : 4
+				}
+			},
+			{
+				"type" : "sphere",
+				"radius" : 3.0,
+				"reflectance" : 0.0,
+				"roughness" : 0.0,
+				"refraction_index" : 1.6,
+				"opacity" : 0.1,
+				"color" :
+				{
+					"r" : 0,
+					"g" : 128,
+					"b" : 255
+				},
+				"position" :
+				{
+					"x" : -4.5,
+					"y" : 9
+				}
+			}
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : -17.0,
+					"y" : 4.0,
+					"z" : 2.5
+				},
+				"forward" : {
+					"x" : 1.0,
+					"y" : 1.0,
+					"z" : 0.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	},
+	{
+		"sun_direction" : {
+		   "x" : 0,
+		   "y" : 0,
+		   "z" : 0
+		},
+		"ambient_color" :
+		{
+			"hex" : "0x000000"
+		},
+		"objects" :
+		[
+			{
+				"type" : "cube",
+				"light" : true,
+				"light_intensity" : 1.5,
+				"position" :
+				{
+					"y" : -5.0
+				},
+				"size" :
+				{
+					"x" : 5.0,
+					"y" : 0.5,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"y" : -4.0
+				},
+				"size" :
+				{
+					"x" : 3.5,
+					"y" : 0.5,
+					"z" : 3.5
+				}
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"y" : 5.0
+				},
+				"size" :
+				{
+					"x" : 5.0,
+					"y" : 0.5,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"color" :
+				{
+					"r" : 0,
+					"g" : 128,
+					"b" : 255
+				},
+				"position" :
+				{
+					"x" : 5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 5.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"color" :
+				{
+					"r" : 255,
+					"g" : 128,
+					"b" : 0
+				},
+				"position" :
+				{
+					"x" : -5.0
+				},
+				"size" :
+				{
+					"x" : 0.5,
+					"y" : 5.0,
+					"z" : 5.0
+				}
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"z" : -5.0
+				},
+				"size" :
+				{
+					"x" : 5.0,
+					"y" : 5.0,
+					"z" : 0.5
+				}
+			},
+			{
+				"type" : "cube",
+				"position" :
+				{
+					"z" : 5.0
+				},
+				"size" :
+				{
+					"x" : 5.0,
+					"y" : 5.0,
+					"z" : 0.5
+				}
+			},
+			{
+				"type" : "sphere",
+				"radius" : 1.5,
+				"reflectance" : 0.0,
+				"refraction_index" : 1.6,
+				"roughness" : 0.0,
+				"opacity" : 0.1,
+				"color" :
+				{
+					"r" : 128,
+					"g" : 0,
+					"b" : 255
+				},
+				"position" :
+				{
+					"x" : 0.0,
+					"y" : -2.0,
+					"z" : 0.0
+				}
+			},
+			{
+				"type" : "sphere",
+				"light" : true,
+				"light_intensity" : 1.5,
+				"radius" : 2.0,
+				"position" :
+				{
+					"x" : 0.0,
+					"y" : 0.5,
+					"z" : 4.5
+				}
+			}
+		],
+		"cameras" :
+		[
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : -3.5
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.75,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"focal_length" : 0.1
+			}
+		]
+	}
+]

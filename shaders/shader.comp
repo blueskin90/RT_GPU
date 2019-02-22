@@ -1,0 +1,466 @@
+#version 460
+#extension GL_ARB_separate_shader_objects : enable
+#include "structures.glsl"
+#include "roots.glsl"
+#include "primitives.glsl"
+#include "globals.glsl"
+#include "sampling.glsl"
+#include "intersect.glsl"
+
+layout (local_size_x = 16, local_size_y = 16) in;
+
+layout (set = 0, binding = 0, rgba8) uniform image2D render;
+
+layout (set = 3, binding = 0) uniform sampler2D texture0;
+layout (set = 3, binding = 1) uniform sampler2D texture1;
+layout (set = 3, binding = 2) uniform sampler2D texture2;
+layout (set = 3, binding = 3) uniform sampler2D texture3;
+layout (set = 3, binding = 4) uniform sampler2D texture4;
+layout (set = 3, binding = 5) uniform sampler2D texture5;
+layout (set = 3, binding = 6) uniform sampler2D texture6;
+layout (set = 3, binding = 7) uniform sampler2D texture7;
+
+vec3 ft_refract(vec3 I, vec3 N, float eta)
+{
+	float k = 1.0 - eta * eta * (1.0 - dot(N, I) * dot(N, I));
+    if (k < 0.0)
+       return ZERO;
+    else
+        return eta * I - (eta * dot(N, I) + sqrt(k)) * N;
+}
+
+Ray ray(vec3 ro, vec3 rd)
+{
+	Ray res;
+	res.ro = ro;
+	res.rd = rd;
+	return res;
+}
+
+void initRays(vec2 uv, out Ray ray, out vec3 planePos)
+{
+	ray.ro = cam.pos;
+
+	vec3 right = cam.right;
+	float c = tan((cam.fov/2)/180*PI);
+	planePos = (ray.ro + cam.fw + (cam.right * c * uv.x + cam.up * c * uv.y));
+	ray.rd = normalize(planePos - ray.ro);
+}
+
+int set(float h, inout float t, inout int id, int i, inout int object, int OBJECT)
+{
+	if (h > 0.0 && h + Epsilon < t)
+	{
+		t = h;
+		id = i;
+		object = OBJECT;
+		return 1;
+	}
+	return 0;
+}
+
+vec2 cutByQuadric(Ray ray, vec2 form, inout vec3 nx, inout vec3 ny, Quadric q)
+{
+	vec2 cutter = iQuadric(ray.ro, ray.rd, q.matrix);
+	vec2 h = lameCut(form, cutter, nx, ny, nx, ny);
+
+	return(h);
+}
+
+vec2 negativeQuadric(Ray ray, vec2 form, inout vec3 nx, inout vec3 ny, Quadric q)
+{
+	vec2 cutter = iQuadric(ray.ro, ray.rd, q.matrix);
+	vec3 cutterNX = nQuadric(ray.ro + ray.rd*cutter.x, q.matrix);
+	vec3 cutterNY = nQuadric(ray.ro + ray.rd*cutter.y, q.matrix);
+
+	vec2 h = cut(form, cutter, nx, ny, cutterNX, cutterNY, nx, ny);
+
+	return(h);
+}
+
+void set(inout float t, inout float it, inout Hit hit, vec2 h, Material material, vec3 normal, vec2 coords)
+{
+	if (h.x > Epsilon && h.x < t)
+	{
+		t = h.x;
+		hit.normal = normal;
+		hit.coords = coords;
+		hit.material = material;
+		if (h.y < 0.0 && h.y > it)
+		{
+			it = h.y;
+			hit.insideMat = material;
+			hit.inside = true;
+		}
+	}
+}
+
+float intersect(Ray ray, out Hit hit)
+{
+	Ray tRay;
+	vec3 tmp;
+	float t = INFINITY;
+	float it = -999999.0;
+	hit.inside = false;
+
+	for(int i = 0;
+		i < scene.quadricCount;
+		++i)
+	{
+		Quadric q = scene.quadrics[i];
+
+		vec2 form = iQuadric(ray.ro, ray.rd, q.matrix);
+		vec3 formNX = nQuadric(ray.ro + ray.rd*form.x, q.matrix);
+		vec3 formNY = nQuadric(ray.ro + ray.rd*form.y, q.matrix);
+
+		if(q.subtractID >= 0)
+		{
+			int sid = q.subtractID;
+			while(sid >= 0)
+			{
+				if(scene.quadrics[sid].isNegative == 1)
+					form = cutByQuadric(ray, form, formNX, formNY, scene.quadrics[sid]);
+				else if(scene.quadrics[sid].isNegative == 2)
+					form = negativeQuadric(ray, form, formNX, formNY, scene.quadrics[sid]);
+
+				sid = scene.quadrics[sid].subtractID;
+			}
+		}
+
+		float h = form.x - q.isNegative*10000000;
+		if (h > Epsilon && h < t)
+		{
+			t = h;
+			hit.normal = formNX;
+			hit.inside = (sign(dot(hit.normal, -ray.rd * t)) < 0);
+			hit.normal *= hit.inside ? -1 : 1;
+			hit.material = q.material;
+			hit.insideMat = q.material;
+			if(hit.material.mode > 0)
+				hit.coords = cSphere(ray.ro + t*ray.rd, vec4(0, 0, 0, 1));
+			else
+				hit.coords = (ray.ro + t*ray.rd).xz;
+			hit.tmp = form.y;
+		}
+	}
+	//	Cubes
+	for (int i = 0; i < scene.cubeCount; ++i)
+	{
+		Cube cube = scene.cubes[i];
+		tRay = transformRay(ray, cube.transform);
+
+		vec2 form = iCube(tRay.ro, tRay.rd, ZERO, cube.size);
+		vec3 formNX = qMulVec(nCube(tRay.ro + tRay.rd * form.x, ZERO, cube.size), qConjugate(cube.transform.rot));
+		vec3 formNY = qMulVec(nCube(tRay.ro + tRay.rd * form.y, ZERO, cube.size), qConjugate(cube.transform.rot));
+
+		if(cube.subtractID >= 0)
+		{
+			int sid = cube.subtractID;
+			while(sid >= 0)
+			{
+				if(scene.quadrics[sid].isNegative == 1)
+					form = cutByQuadric(ray, form, formNX, formNY, scene.quadrics[sid]);
+				else if(scene.quadrics[sid].isNegative == 2)
+					form = negativeQuadric(ray, form, formNX, formNY, scene.quadrics[sid]);
+
+				sid = scene.quadrics[sid].subtractID;
+			}
+		}
+
+		vec2 h = form;
+		if (h.x > Epsilon && h.x < t)
+		{
+			t = h.x;
+			hit.normal = formNX;
+			hit.inside = (sign(dot(hit.normal, -ray.rd * t)) < 0);
+			hit.normal *= hit.inside ? -1 : 1;
+			hit.material = cube.material;
+			if (h.y < 0.0 && h.y > it)
+			{
+				it = h.y;
+				hit.insideMat = cube.material;
+				hit.inside = true;
+			}
+			if(hit.material.mode > 0)
+				hit.coords = cSphere(ray.ro + t*ray.rd, vec4(0, 0, 0, 1));
+			else
+				hit.coords = (ray.ro + t*ray.rd).xz;
+		}
+	}
+	//	Capsules
+	for (int i = 0; i < scene.capsuleCount; ++i)
+	{
+		Capsule cap = scene.capsules[i];
+		tRay = transformRay(ray, cap.transform);
+		vec4 foo = vec4(cap.transform.pos, cap.z);
+		vec2 h = iCapsule(tRay.ro, tRay.rd, foo, cap.z);
+		if (h.x > Epsilon && h.x < t)
+		{
+			t = h.x;
+			hit.normal = qMulVec(nCapsule(tRay.ro + tRay.rd * t, foo * vec4(ZERO, 1.0), cap.z), qConjugate(cap.transform.rot)) * sign(h.y);
+			hit.material = cap.material;
+			if (h.y < 0.0 && h.y > it)
+			{
+				it = h.y;
+				hit.insideMat = cap.material;
+				hit.inside = true;
+			}
+			if(hit.material.mode > 0)
+				hit.coords = cSphere(ray.ro + t*ray.rd, vec4(0, 0, 0, 1));
+			else
+				hit.coords = (ray.ro + t*ray.rd).xz;
+		}
+	}
+	// 	Tori
+	for (int i = 0; i < scene.torusCount; ++i)
+	{
+		Torus tor = scene.torus[i];
+		tRay = transformRay(ray, tor.transform);
+		vec2 h = iTorus(tRay.ro, tRay.rd, ZERO, tor.major_radius, tor.minor_radius);
+		if (h.x > Epsilon && h.x < t)
+		{
+			t = h.x;
+			hit.normal = qMulVec(nTorus(tRay.ro + tRay.rd * t, ZERO, vec2(tor.major_radius, tor.minor_radius)), qConjugate(tor.transform.rot)) * sign(h.y);
+			hit.material = tor.material;
+			if (h.y < 0.0 && h.y > it)
+			{
+				it = h.y;
+				hit.insideMat = tor.material;
+				hit.inside = true;
+			}
+			if(hit.material.mode > 0)
+				hit.coords = cSphere(ray.ro + t*ray.rd, vec4(0, 0, 0, 1));
+			else
+				hit.coords = (ray.ro + t*ray.rd).xz;
+		}
+	}
+
+	if (scene.mobius == 1)
+	{
+		float tt = INFINITY;
+		vec3 nnn;
+		bool spec = iSpecial(ray.ro, ray.rd, tt, nnn);
+		if (spec && tt < t)
+		{
+			t = tt;
+			Material tmp;
+			tmp.color = ONE;
+			tmp.roughness = 1.0;
+			tmp.opacity = 1.0;
+			tmp.reflectance = 1.0;
+			tmp.refractionIndex = 1.0;
+			hit.material = tmp;
+			hit.normal = nnn;
+		}
+	}
+
+	return t;
+}
+
+Ray interact(Ray mainRay, Material material, bool inside, vec3 n, float t, uint seed, int i)
+{
+	float fresnel = ff(!inside ? 1.0 : material.refractionIndex, !inside ? material.refractionIndex : 1.0, n, mainRay.rd, material.reflectance);
+	float reflectionBrach = step(randMe(), fresnel);
+
+	vec3 refractionVec = ft_refract(mainRay.rd, n, !inside ? 1.0 / material.refractionIndex : material.refractionIndex / 1.0);
+	vec3 reflectionVec = reflect(mainRay.rd, n);
+	vec3 cosineVec = cosineDirection(n);
+
+	if (length(refractionVec) < 0.5)
+	{
+		reflectionBrach = 1;
+		refractionVec = reflectionVec;
+	}
+
+	reflectionVec = normalize(mix(reflectionVec, cosineVec, material.roughness));
+	refractionVec = normalize(mix(refractionVec, -cosineVec, material.roughness));
+
+	vec3 refRo = (mainRay.ro + mainRay.rd * t) + n * Epsilon * length(mainRay.ro + mainRay.rd * t) * mix(-1.0, 1.0, reflectionBrach);
+	vec3 refRd = mix(refractionVec, reflectionVec, reflectionBrach);
+
+	Ray res;
+	res.ro = refRo;
+	res.rd = refRd;
+	return res;
+}
+
+vec4 getTextureColor(int textureID, vec2 coords, float shift, float stretch)
+{
+	if(textureID == 0)
+		return texture(texture0, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 1)
+		return texture(texture1, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 2)
+		return texture(texture2, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 3)
+		return texture(texture3, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 4)
+		return texture(texture4, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 5)
+		return texture(texture5, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 6)
+		return texture(texture6, coords / vec2(stretch) - vec2(shift));
+	else if(textureID == 7)
+		return texture(texture7, coords / vec2(stretch) - vec2(shift));
+}
+
+const int bounces = 8;
+vec3 bounce(Ray mainRay)
+{
+	uint seed = pixelID + (800 * 800) * uint(frame * bounces);
+	if(cam.picasso > 0)
+		seed = frame;
+
+	Hit hit;
+	vec3 lum = ONE;
+	for (int i = 0; i < bounces; ++i)
+	{
+		float t = intersect(mainRay, hit);
+
+		for (int j = 0; j < scene.lightCount; ++j)
+		{
+			Light light = scene.lights[j];
+			vec3 prd = normalize(light.pos - mainRay.ro);
+			float dist = distance(mainRay.ro, light.pos);
+			vec3 pos = mainRay.ro + mainRay.rd * dist;
+			if (distance(pos, light.pos) < 0.5 && t >= dist && i > 0)
+				return lum * 5.0 * light.color;
+		}
+
+		if (abs(hit.material.mode) == 1)
+		{
+			hit.material.color = getTextureColor(hit.material.textureID, hit.coords, hit.material.shift, hit.material.stretch).xyz * hit.material.color;
+			hit.insideMat.color = hit.material.color;
+		}
+		else if (abs(hit.material.mode) == 2)
+		{
+			float alpha = getTextureColor(hit.material.textureID, hit.coords, hit.material.shift, hit.material.stretch).w;
+			hit.material.roughness = alpha;
+			hit.material.reflectance = 0.0;
+		}
+		else if(abs(hit.material.mode) == 3)
+		{
+			vec3 value = getTextureColor(hit.material.textureID, hit.coords, hit.material.shift, hit.material.stretch).xyz - ONE/2;
+			hit.normal = normalize(2*value);
+		}
+		else if(abs(hit.material.mode) == 4)
+		{
+			vec2 pos = hit.coords / vec2(hit.material.stretch) + vec2(hit.material.shift);
+			hit.material.color = vec3(floor(mod(floor(mod(pos.x, 2)) + floor(mod(pos.y, 2)), 2)));
+		}
+		else if(abs(hit.material.mode) == 5)
+		{
+			vec2 pos = hit.coords / vec2(hit.material.stretch) + vec2(hit.material.shift);
+			hit.normal = normalize(hit.normal + RIGHT*sin(pos.x)*2);
+		}
+		else if(abs(hit.material.mode) == 6)
+		{
+			vec3 pos = vec3(hit.coords / vec2(hit.material.stretch) + vec2(hit.material.shift), 1.0);
+
+			vec4 rot = createRotation(FW, length(pos));
+			vec3 tmp = qMulVec(pos, rot);
+			float sine = sin(length(tmp));
+			float cosine = cos(length(tmp));
+			hit.material.color = (tmp.x > 0 ^^ tmp.y > 0) ? vec3(sine, cosine, 0) : ZERO;
+		}
+		else if(abs(hit.material.mode) == 7)
+		{
+			vec2 pos = vec2(1e5) - hit.coords / vec2(hit.material.stretch) + vec2(hit.material.shift);
+
+			hit.material.color *= vec3(fbm(vec3(pos, 0)));
+		}
+
+		float d = (saturate(dot(mainRay.rd, scene.sunDir) * 0.5 + 0.5));
+		vec3 skyC = ZERO;
+		if(length(scene.sunDir) > 0.1)
+		{
+			float sd = saturate(dot(mainRay.rd, UP));
+			skyC = (sd > 0.0) ? mix(ONE, vec3(0.32, 0.56, 0.78), sd)
+				: vec3(1.0 - abs(sd));
+		}
+
+		if (t > 100000 && (d > 0.999))
+			return lum * 17.5;
+		else if (t > 100000)
+			return lum * saturate(skyC + scene.ambientLightColor);
+
+		if (hit.material.reflectance < 0.0)
+			return lum * hit.material.color;
+
+		if (hit.inside) //and previously transparent
+		{
+			float ttt = (t * hit.material.opacity * (1-hit.material.roughness));
+			vec3 tCol = mix(ONE, saturate(hit.insideMat.color), saturate(ttt));
+			if (ttt > 1.0)
+				tCol = mix(tCol, ZERO, saturate(ttt - 1.0));
+			lum *= tCol;
+		}
+
+		lum *= mix(ONE, saturate(hit.material.color), saturate(saturate(hit.material.roughness))) * mix(0.95, 0.75, hit.material.roughness);
+
+		mainRay = interact(mainRay, hit.material, hit.inside, hit.normal, t, seed, i);
+	}
+	return ZERO;
+}
+
+void main()
+{
+	ivec2 dim = imageSize(render);
+	vec2 uv = vec2(gl_GlobalInvocationID.xy) / vec2(dim.xy);
+	vec2 screen = (uv - .5);
+	screen *= 2.0;
+    screen.y *= (dim.y / dim.x);
+
+	if(cam.swirl > 0)
+    {
+		vec3 tmp = vec3(screen , 1.0);
+		vec4 rot = createRotation(FW, length(screen) - 0.5);
+		tmp = qMulVec(tmp, rot);
+		screen.xy = tmp.xy;
+	}
+
+	vec3 planePos;
+	Ray mainRay;
+	initRays(screen, mainRay, planePos);
+
+	pixelID = gl_GlobalInvocationID.x + dim.x * gl_GlobalInvocationID.y;
+	iSeed = pixelID * 2000 * 200 * (frame + 1);
+
+	vec3 fP = mainRay.ro + mainRay.rd * cam.focalLength;
+	vec2 tri = get(pixelID + dim.x * dim.y * frame);
+	vec3 rO = mainRay.ro + (cam.right * tri.x * cam.aperture) + (qMulVec(UP, createRotation(cam.right, cam.up.x)) * tri.y * cam.aperture);
+	mainRay.ro = rO;
+	mainRay.rd = normalize(fP - rO);
+
+	mainRay.rd += randomSphereDirection() * 0.002;
+	mainRay.rd = normalize(mainRay.rd);
+
+	uint groupID = gl_WorkGroupID.x + 16 * gl_WorkGroupID.y;
+	vec3 outer = bounce(mainRay);
+	outer = pow(outer, vec3(2.2));
+
+	if(cam.filterID == 1) // Sepia
+	{
+		vec3 result;
+		result.r = (outer.r * .393) + (outer.g *.769) + (outer.b * .189);
+		result.g = (outer.r * .349) + (outer.g *.686) + (outer.b * .168);
+		result.b = (outer.r * .272) + (outer.g *.534) + (outer.b * .131);
+		outer = result;
+	}
+	else if(cam.filterID == 2) // B/W
+	{
+		outer = vec3(outer.r+outer.g+outer.b) / 3;
+	}
+
+	vec3 col = acc.data[pixelID].xyz;
+	if (scene.motionBlur == 0)
+		acc.data[pixelID] = vec4(mix(col, outer, 1.0 / float(frame + 1.0)), 1.0);
+	else
+		acc.data[pixelID] = vec4(mix(col, outer, 0.1), 1.0);
+
+	vec3 res = acc.data[pixelID].xyz;
+	float mm = max(max(res.x, res.y), res.z);
+	if (res.x > 1.0 || res.y > 1.0 || res.z > 1.0)
+		res /= mm;
+	imageStore(render, ivec2(gl_GlobalInvocationID.xy), vec4(res, 1.0));
+}

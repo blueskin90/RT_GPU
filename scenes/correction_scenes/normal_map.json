@@ -1,0 +1,46 @@
+[
+	 {
+	 	"name":"normal map",
+		"objects" : [
+			{
+				"type":"sphere",
+				"position":
+				{
+					"x":0,
+					"y":5,
+					"z":0
+				},
+				"light":true,
+				"light_intensity":3
+			},
+			{
+				"type":"plane",
+				"texture":3,
+				"stretch":2,
+				"mode":"normal map",
+				"position":
+				{
+					"x":-0.75
+				}
+			}
+		],
+		"cameras" : [
+			{
+				"position" : {
+					"x" : 0.0,
+					"y" : 5.0,
+					"z" : -5.0
+				},
+				"forward" : {
+					"x" : 0.0,
+					"y" : -0.5,
+					"z" : 1.0
+				},
+				"fov" : 90.0,
+				"filter" : "no filter",
+				"picasso" : false,
+				"swirl" : false
+			}
+		]
+	}
+]
